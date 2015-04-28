@@ -1,5 +1,5 @@
 
-var baseUrl = 'http://192.168.1.101:8088/';
+var baseUrl = 'http://vip.lekangba.com:8088';
 
 $(document).ready(function(){
   /*
