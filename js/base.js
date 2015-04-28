@@ -23,6 +23,9 @@ function isLogin() {
     data: {},
     success: function (data) {
       var obj = eval(data);
+      if ( !obj.success ) {
+        window.location.href = 'login.html';
+      }
     }
   });
 }

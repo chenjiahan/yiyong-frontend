@@ -72,7 +72,8 @@
             <th></th>
             <th class="col-md-1">ID</th>
             <th class="col-md-3">公司名称</th>
-            <th class="col-md-2">客户姓名</th>
+            <th class="col-md-1">客户姓名</th>
+            <th class="col-md-2">手机号</th>
             <th class="col-md-1">积分</th>
             <th class="col-md-2">生日</th>
             <th class="col-md-2">注册时间</th>
@@ -84,6 +85,7 @@
             <td>1</td>
             <td>中国大唐集团公司</td>
             <td>李世民</td>
+            <td>13655774592</td>
             <td>1000</td>
             <td>1993-08-05</td>
             <td>2015-04-15</td>
@@ -93,6 +95,7 @@
             <td>2</td>
             <td>神华集团有限责任公司</td>
             <td>玉皇大帝</td>
+            <td>13655774592</td>
             <td>1500</td>
             <td>1990-09-25</td>
             <td>2015-4-16</td>
@@ -102,6 +105,7 @@
             <td>3</td>
             <td>中兴通讯股份有限公司</td>
             <td>红孩儿</td>
+            <td>13655774592</td>
             <td>2000</td>
             <td>1963-02-16</td>
             <td>2015-4-18</td>
@@ -152,6 +156,10 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/base.js"></script>
 <script>
+  $(document).ready(function(){
+    //判断是否登录
+    isLogin();
+  })
 </script>
 </body>
 </html>
