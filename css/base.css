@@ -54,8 +54,11 @@ body {
   margin: 0 !important;
   float: right; }
 
-.high-th {
-  padding: 15px 8px !important; }
+td .btn {
+  padding: 3px 8px !important;
+  margin-top: -5px;
+  margin-bottom: -5px;
+  font-size: 12px; }
 
 /*--box--*/
 .my-box {
