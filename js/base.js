@@ -1,5 +1,5 @@
 
-var baseUrl = 'http://vip.lekangba.com:8088';
+var baseUrl = 'http://vip.lekangba.com/';
 
 $(document).ready(function(){
   /*

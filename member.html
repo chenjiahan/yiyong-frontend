@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>会员列表 - 易用联友积分管理系统</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+<body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-collapse">
+          <span class="sr-only"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">易用联友积分管理系统</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">申请列表<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="check.html">待审核</a></li>
+              <li><a href="check.html">未通过</a></li>
+              <li><a href="check.html">已通过</a></li>
+            </ul>
+          </li>
+          <li><a href="member.html">会员列表</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">基础档案<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">客户经理</a></li>
+              <li><a href="category.html">产品类别</a></li>
+              <li><a href="#">消费类别</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">积分兑换<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">礼品</a></li>
+              <li><a href="#">兑换规则</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">管理员<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">账号管理</a></li>
+              <li><a href="#" id="logout">退出</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="active">积分管理系统</li>
+        <li><a href="">会员列表</a></li>
+      </ol>
+    </div>
+    <div class="row">
+      <div class="my-box">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th></th>
+            <th class="col-md-1">ID</th>
+            <th class="col-md-3">公司名称</th>
+            <th class="col-md-2">客户姓名</th>
+            <th class="col-md-1">积分</th>
+            <th class="col-md-2">生日</th>
+            <th class="col-md-2">注册时间</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row" class="input-th"><input type="checkbox" /></th>
+            <td>1</td>
+            <td>中国大唐集团公司</td>
+            <td>李世民</td>
+            <td>1000</td>
+            <td>1993-08-05</td>
+            <td>2015-04-15</td>
+          </tr>
+          <tr>
+            <th scope="row" class="input-th"><input type="checkbox" /></th>
+            <td>2</td>
+            <td>神华集团有限责任公司</td>
+            <td>玉皇大帝</td>
+            <td>1500</td>
+            <td>1990-09-25</td>
+            <td>2015-4-16</td>
+          </tr>
+          <tr>
+            <th scope="row" class="input-th"><input type="checkbox" /></th>
+            <td>3</td>
+            <td>中兴通讯股份有限公司</td>
+            <td>红孩儿</td>
+            <td>2000</td>
+            <td>1963-02-16</td>
+            <td>2015-4-18</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row tb-toolbar">
+      <input type="button" class="btn btn-default" value="全选" id="selectAll" />
+      <input type="button" class="btn btn-default" value="全不选" id="unSelect" />
+      <input type="button" class="btn btn-danger" value="删除" id="delete" data-toggle="modal" data-target="#delete-modal" />
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li><a href="#">1</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="modal" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <p>确认删除选中的会员吗？</p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+</script>
+</body>
+</html>
