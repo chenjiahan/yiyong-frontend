@@ -58,9 +58,17 @@ body {
 }
 td .btn {
   padding: 3px 8px!important;
-  margin-top:-5px;
+  margin-top:-6px;
   margin-bottom: -5px;
   font-size: 12px;
+  border-radius: 0;
+}
+tbody th {
+  text-align: center;
+  font-weight: normal;
+}
+.align-center {
+  text-align: center;
 }
 
 /*--box--*/
