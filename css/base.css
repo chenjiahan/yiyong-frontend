@@ -24,6 +24,9 @@ body {
 .nav > li > a:hover {
   background-color: #e7e7e7 !important; }
 
+.glyphicon {
+  margin-right: 2px; }
+
 /*--breadcrumb--*/
 .breadcrumb {
   background-color: #fcfcfc !important;

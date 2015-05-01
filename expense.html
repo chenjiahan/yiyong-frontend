@@ -6,159 +6,111 @@
   <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
-<body>  <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-collapse">
-        <span class="sr-only"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">易用联友积分管理系统</a>
+<body>
+  <!--顶部导航条-->
+  <script src="head.html"></script>
+  <section class="container">
+    <div class="row">
+      <ol class="breadcrumb">
+        <li class="active">积分管理系统</li>
+        <li class="active">基础档案</li>
+        <li><a href="">消费类别</a></li>
+      </ol>
     </div>
-    <div class="collapse navbar-collapse" id="bs-collapse">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">申请列表<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="check.html">待审核</a></li>
-            <li><a href="check.html">未通过</a></li>
-            <li><a href="check.html">已通过</a></li>
-          </ul>
+    <div class="row">
+      <div class="my-box">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="col-md-6 align-center">类别名称</th>
+            <th class="col-md-6">操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th>软件费</th>
+            <td>
+              <input type="button" class="btn btn-success" value="编辑"/>
+              <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+          <tr>
+            <th>服务费</th>
+            <td>
+              <input type="button" class="btn btn-success" value="编辑"/>
+              <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+          <tr>
+            <th>实施费</th>
+            <td>
+              <input type="button" class="btn btn-success" value="编辑"/>
+              <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+          <tr>
+            <th>开发费</th>
+            <td>
+              <input type="button" class="btn btn-success" value="编辑"/>
+              <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row tb-toolbar">
+      <input type="button" class="btn btn-primary" value="新增"/>
+      <ul class="pagination">
+        <li>
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
         </li>
-        <li><a href="member.html">会员列表</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">基础档案<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="manager.html">客户经理</a></li>
-            <li><a href="category.html">产品类别</a></li>
-            <li><a href="expense.html">消费类别</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">积分兑换<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">礼品</a></li>
-            <li><a href="#">兑换规则</a></li>
-          </ul>
+        <li><a href="#">1</a></li>
+        <li>
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">管理员<span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">账号管理</a></li>
-            <li><a href="#" id="logout">退出</a></li>
-          </ul>
-        </li>
-      </ul>
     </div>
-  </div>
-</nav>
-<section class="container">
-  <div class="row">
-    <ol class="breadcrumb">
-      <li class="active">积分管理系统</li>
-      <li class="active">基础档案</li>
-      <li><a href="">客户经理</a></li>
-    </ol>
-  </div>
-  <div class="row">
-    <div class="my-box">
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th class="col-md-6 align-center">类别名称</th>
-          <th class="col-md-6">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <th>软件费</th>
-          <td>
-            <input type="button" class="btn btn-success" value="编辑"/>
-            <input type="button" class="btn btn-danger" value="删除"/>
-          </td>
-        </tr>
-        <tr>
-          <th>服务费</th>
-          <td>
-            <input type="button" class="btn btn-success" value="编辑"/>
-            <input type="button" class="btn btn-danger" value="删除"/>
-          </td>
-        </tr>
-        <tr>
-          <th>实施费</th>
-          <td>
-            <input type="button" class="btn btn-success" value="编辑"/>
-            <input type="button" class="btn btn-danger" value="删除"/>
-          </td>
-        </tr>
-        <tr>
-          <th>开发费</th>
-          <td>
-            <input type="button" class="btn btn-success" value="编辑"/>
-            <input type="button" class="btn btn-danger" value="删除"/>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+  </section>
 
-  <div class="row tb-toolbar">
-    <input type="button" class="btn btn-primary" value="新增"/>
-    <ul class="pagination">
-      <li>
-        <a href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li><a href="#">1</a></li>
-      <li>
-        <a href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<div class="modal" id="pass-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
-      </div>
-      <div class="modal-body">
-        <p>将选中客户设为通过审核吗？</p>
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">确定</button>
-        <div class="clear"></div>
+  <div class="modal" id="pass-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <p>将选中客户设为通过审核吗？</p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确定</button>
+          <div class="clear"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal" id="unPass-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
-      </div>
-      <div class="modal-body">
-        <p>将选中客户设为不通过审核吗？</p>
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">确定</button>
-        <div class="clear"></div>
+  <div class="modal" id="unPass-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <p>将选中客户设为不通过审核吗？</p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确定</button>
+          <div class="clear"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
 </body>
 <script src="js/jquery-2.1.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
