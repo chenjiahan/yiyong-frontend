@@ -99,11 +99,6 @@
 <script src="js/jquery.form.js"></script>
 <script src="js/base.js"></script>
 <script>
-  $(document).ready(function(){
-    //判断是否登录
-    isLogin();
-  })
-
   var giftList = null;
   //获取礼品列表
     $.ajax({
@@ -141,50 +136,53 @@
       }
     });
 
-  //删除礼品
-  var deleteId = null;
-  $('.btn-danger').click(function(){
-    deleteId = this.dataset.id;
-    alert(deleteId);
-  })
-  $('#sure-delete').click(function(){
-    $.ajax({
-      url: baseUrl + 'deletePresent',
-      xhrFields: {withCredentials: true},
-      type: 'POST',
-      dataType: 'json',
-      data: {id:deleteId},
-      success: function (data) {
-        var obj = eval(data);
-        if ( obj['success']) {
-          alert('删除成功');
-          window.location.reload();
+  $(document).ready(function(){
+    //判断是否登录
+    isLogin();
+    //删除礼品
+    var deleteId = null;
+    $('.btn-danger').click(function(){
+      deleteId = this.dataset.id;
+    })
+    $('#sure-delete').click(function(){
+      $.ajax({
+        url: baseUrl + 'deletePresent',
+        xhrFields: {withCredentials: true},
+        type: 'POST',
+        dataType: 'json',
+        data: {id:deleteId},
+        success: function (data) {
+          var obj = eval(data);
+          if ( obj['success']) {
+            alert('删除成功');
+            window.location.reload();
+          }
         }
-      }
-    });
-  })
-
-  //编辑礼品
-  var updateId = null;
-  $('.btn-success').click(function(){
-    updateId = this.dataset.id;
-    $('#giftName2').val(giftList[updateId]['name']);
-    $('#giftCredit2').val(giftList[updateId]['credit']);
-    $('#giftDes2').val(giftList[updateId]['description']);
-  });
-  $('#change-gift-btn').click(function(){
-    if ( $('#giftName2').val() == '' ) {
-      alert('礼品名称不能为空');
-    } else if ( $('#giftCredit2').val() == '' ) {
-      alert('礼品积分不能为空');
-    } else if ( $('#giftDes2').val() == '' ) {
-      alert('礼品描述不能为空');
-    } else {
-      $('#add-gift-form').ajaxSubmit(function() {
-        alert('修改成功！');
-        window.location.reload();
       });
-    }
+    });
+
+    //编辑礼品
+    var updateId = null;
+    $('.btn-success').click(function(){
+      updateId = this.dataset.id;
+      $('#giftName2').val(giftList[updateId]['name']);
+      $('#giftCredit2').val(giftList[updateId]['credit']);
+      $('#giftDes2').val(giftList[updateId]['description']);
+    });
+    $('#change-gift-btn').click(function(){
+      if ( $('#giftName2').val() == '' ) {
+        alert('礼品名称不能为空');
+      } else if ( $('#giftCredit2').val() == '' ) {
+        alert('礼品积分不能为空');
+      } else if ( $('#giftDes2').val() == '' ) {
+        alert('礼品描述不能为空');
+      } else {
+        $('#add-gift-form').ajaxSubmit(function() {
+          alert('修改成功！');
+          window.location.reload();
+        });
+      }
+    })
   })
 
   //添加礼品
