@@ -142,13 +142,13 @@
         if (obj['success']) {
           for(var o in obj['data']){
             var giftBox = ' <div class="gift-box"> <img class="gift-img col-md-5" src="'
-              + obj['pictureUrl']
+              + o['pictureUrl']
               + '> <div class="col-md-7 gift-info"> <p>名称：'
-              + obj['name']
+              + o['name']
               + '</p> <p>积分：'
-              + obj['credit']
+              + o['credit']
               + '</p> <p class="gift-dsp">描述：'
-              + obj['description']
+              + o['description']
               + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除"/> <input type="button" class="btn btn-success" value="编辑"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
           }
