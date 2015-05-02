@@ -60,7 +60,7 @@
         <h4 class="modal-title">添加礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
       </div>
       <div class="modal-body">
-        <form enctype="multipart/form-data" method="post" id="add-gift-form">
+        <form enctype="multipart/form-data" method="post" id="add-gift-form" action= "http://vip.lekangba.com/addPresent">
           <input type="text" id="giftName" class="form-control" placeholder="名称">
           <input type="number" id="giftCredit" class="form-control" placeholder="积分(整数)">
           <textarea type="text" id="giftDes" class="form-control" placeholder="描述" rows="3"></textarea>
@@ -162,8 +162,7 @@
       alert('礼品图片不能为空');
     } else {
       alert(baseUrl + 'addPresent');
-      $('add-gift-form').action= baseUrl + 'addPresent';
-      $('add-gift-form').submit();
+      $('#add-gift-form').submit();
     }
   })
 </script>
