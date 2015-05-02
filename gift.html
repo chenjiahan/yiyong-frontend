@@ -162,8 +162,8 @@
       alert('礼品图片不能为空');
     } else {
       alert(baseUrl + 'addPresent');
-      $('#add-gift-form').submit(function(){
-        window.location.href = 'gift.html'
+      $('#add-gift-form').submit(
+        function() {return false;
       });
     }
   })
