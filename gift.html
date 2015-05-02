@@ -96,6 +96,7 @@
 </body>
 <script src="js/jquery-2.1.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.form.js"></script>
 <script src="js/base.js"></script>
 <script>
   $(document).ready(function(){
@@ -162,8 +163,8 @@
       alert('礼品图片不能为空');
     } else {
       alert(baseUrl + 'addPresent');
-      $('#add-gift-form').submit(
-        function() {return false;
+      $('#add-gift-form').ajaxSubmit(function() {
+        type: "post"
       });
     }
   })
