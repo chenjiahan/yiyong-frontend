@@ -61,11 +61,11 @@
       </div>
       <div class="modal-body">
         <form enctype="multipart/form-data" method="post" id="add-gift-form" action= "http://vip.lekangba.com/addPresent">
-          <input type="text" id="giftName" class="form-control" placeholder="名称">
-          <input type="number" id="giftCredit" class="form-control" placeholder="积分(整数)">
-          <textarea type="text" id="giftDes" class="form-control" placeholder="描述" rows="3"></textarea>
+          <input type="text" id="giftName" class="form-control" name="name" placeholder="名称">
+          <input type="number" id="giftCredit" class="form-control" name="credit" placeholder="积分(整数)">
+          <textarea type="text" id="giftDes" class="form-control" name="description" placeholder="描述" rows="3"></textarea>
           <label>礼品图片：</label>
-          <input type="file" id="giftPic">
+          <input type="file" id="giftPic" name="picture">
         </form>
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="add-gift-btn">确定</button>
