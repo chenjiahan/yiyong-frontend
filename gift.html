@@ -18,37 +18,15 @@
       <li><a href="">礼品管理</a></li>
     </ol>
   </div>
-  <div class="row" id="gift-container">
-    <div class="gift-box">
-      <img class="gift-img col-md-5" src="img/gift1.jpg">
-      <div class="col-md-7 gift-info">
-        <p>名称：雨伞</p>
-        <p>积分：50</p>
-        <p class="gift-dsp">描述：雨伞一把，送给敌人最好的礼物。你若不举，便是晴天。</p>
-        <div class="gift-btn">
-          <input type="button" class="btn btn-danger" value="删除" data-id="3">
-          <input type="button" class="btn btn-success" value="编辑" data-id="1">
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
+  <div class="row" id="gift-container"></div>
   <div class="row tb-toolbar">
     <input type="button" class="btn btn-primary" value="新增" data-toggle="modal" data-target="#add-modal"/>
-    <ul class="pagination">
-      <li>
-        <a href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-      <li><a href="#">1</a></li>
-      <li>
-        <a href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
+    <nav>
+      <ul class="pager">
+        <li class="previous"><a href="#"><span aria-hidden="true">&larr;</span> 上一页</a></li>
+        <li class="next"><a href="#">下一页 <span aria-hidden="true">&rarr;</span></a></li>
+      </ul>
+    </nav>
   </div>
 </section>
 
@@ -77,16 +55,38 @@
 
 <div class="modal" id="change-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
+    <div class="modal-content input-modal">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">添加礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" method="post" id="change-gift-form" action= "http://vip.lekangba.com/addPresent">
+          <input type="text" id="giftName2" class="form-control" name="name" placeholder="名称">
+          <input type="number" id="giftCredit2" class="form-control" name="credit" placeholder="积分(整数)">
+          <textarea type="text" id="giftDes2" class="form-control" name="description" placeholder="描述" rows="3"></textarea>
+          <label>礼品图片：</label>
+          <input type="file" id="giftPic2" name="picture">
+        </form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="change-gift-btn">确定</button>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">编辑礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
       </div>
       <div class="modal-body">
-        <input type="text">
-        <input type="">
+        <p>确认删除选中的礼品吗？</p>
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">确定</button>
+        <button type="button" class="btn btn-primary" id="sure-delete">确定</button>
         <div class="clear"></div>
       </div>
     </div>
@@ -108,9 +108,7 @@
   //获取礼品列表
     $.ajax({
       url: baseUrl + 'getPresent',
-      xhrFields: {
-        withCredentials: true
-      },
+      xhrFields: {withCredentials: true},
       type: 'POST',
       dataType: 'json',
       data: {
@@ -130,7 +128,7 @@
               + obj['data'][i].credit
               + '</p> <p class="gift-dsp">描述：'
               + obj['data'][i].description
-              + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#change-modal" data-id="'
+              + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-id="'
               + obj['data'][i].id
               + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-id="'
               + obj['data'][i].id
@@ -143,15 +141,52 @@
       }
     });
 
+  //删除礼品
+  var deleteId = null;
   $('.btn-danger').click(function(){
-    alert(this.dataset.id)
-
+    deleteId = this.dataset.id;
+  })
+  $('#sure-delete').click(function(){
+    $.ajax({
+      url: baseUrl + 'deletePresent',
+      xhrFields: {withCredentials: true},
+      type: 'POST',
+      dataType: 'json',
+      data: {id:deleteId},
+      success: function (data) {
+        var obj = eval(data);
+        if ( obj['success']) {
+          alert('删除成功');
+          window.location.reload();
+        }
+      }
+    });
   })
 
+  //编辑礼品
+  var updateId = null;
   $('.btn-success').click(function(){
-    alert(this.dataset.id)
+    updateId = this.dataset.id;
+    $('#giftName2').val(giftList[updateId]['name']);
+    $('#giftCredit2').val(giftList[updateId]['credit']);
+    $('#giftDes2').val(giftList[updateId]['description']);
+  });
+  $('#change-gift-btn').click(function(){
+    if ( $('#giftName2').val() == '' ) {
+      alert('礼品名称不能为空');
+    } else if ( $('#giftCredit2').val() == '' ) {
+      alert('礼品积分不能为空');
+    } else if ( $('#giftDes2').val() == '' ) {
+      alert('礼品描述不能为空');
+    } else {
+      $('#add-gift-form').ajaxSubmit(function() {
+        alert('修改成功！');
+        window.location.reload();
+      });
+    }
   })
 
+  //添加礼品
   $('#add-gift-btn').click(function(){
     if ( $('#giftName').val() == '' ) {
       alert('礼品名称不能为空');
