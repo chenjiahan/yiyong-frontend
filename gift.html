@@ -162,9 +162,9 @@
     } else if ( $('#giftPic').val() == '' ) {
       alert('礼品图片不能为空');
     } else {
-      alert(baseUrl + 'addPresent');
       $('#add-gift-form').ajaxSubmit(function() {
-        type: "post"
+        alert('添加成功！');
+        window.location.reload();
       });
     }
   })
