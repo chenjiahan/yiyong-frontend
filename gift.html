@@ -58,7 +58,7 @@
     <div class="modal-content input-modal">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">添加礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        <h4 class="modal-title">修改礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
       </div>
       <div class="modal-body">
         <form enctype="multipart/form-data" method="post" id="change-gift-form" action= "http://vip.lekangba.com/addPresent">
@@ -151,6 +151,29 @@
                 }
               });
             });
+
+            //编辑礼品
+            var updateId = null;
+            $('.btn-success').click(function(){
+              updateId = this.dataset.id;
+              $('#giftName2').val(giftList[updateId]['name']);
+              $('#giftCredit2').val(giftList[updateId]['credit']);
+              $('#giftDes2').val(giftList[updateId]['description']);
+            });
+            $('#change-gift-btn').click(function(){
+              if ( $('#giftName2').val() == '' ) {
+                alert('礼品名称不能为空');
+              } else if ( $('#giftCredit2').val() == '' ) {
+                alert('礼品积分不能为空');
+              } else if ( $('#giftDes2').val() == '' ) {
+                alert('礼品描述不能为空');
+              } else {
+                $('#add-gift-form').ajaxSubmit(function() {
+                  alert('修改成功！');
+                  window.location.reload();
+                });
+              }
+            })
           }
         } else {
           alert(obj['msg']);
@@ -161,29 +184,6 @@
   $(document).ready(function(){
     //判断是否登录
     isLogin();
-
-    //编辑礼品
-    var updateId = null;
-    $('.btn-success').click(function(){
-      updateId = this.dataset.id;
-      $('#giftName2').val(giftList[updateId]['name']);
-      $('#giftCredit2').val(giftList[updateId]['credit']);
-      $('#giftDes2').val(giftList[updateId]['description']);
-    });
-    $('#change-gift-btn').click(function(){
-      if ( $('#giftName2').val() == '' ) {
-        alert('礼品名称不能为空');
-      } else if ( $('#giftCredit2').val() == '' ) {
-        alert('礼品积分不能为空');
-      } else if ( $('#giftDes2').val() == '' ) {
-        alert('礼品描述不能为空');
-      } else {
-        $('#add-gift-form').ajaxSubmit(function() {
-          alert('修改成功！');
-          window.location.reload();
-        });
-      }
-    })
   })
 
   //添加礼品
