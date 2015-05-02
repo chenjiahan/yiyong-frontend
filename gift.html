@@ -26,43 +26,14 @@
         <p>积分：50</p>
         <p class="gift-dsp">描述：雨伞一把，送给敌人最好的礼物。你若不举，便是晴天。</p>
         <div class="gift-btn">
-          <input type="button" class="btn btn-danger" value="删除"/>
-          <input type="button" class="btn btn-success" value="编辑"/>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-    <div class="gift-box">
-      <img class="gift-img col-md-5" src="img/gift2.jpg">
-      <div class="col-md-7 gift-info">
-        <p>名称：大宝剑</p>
-        <p>积分：800</p>
-        <p class="gift-dsp">描述：我送你大大宝剑，修炼葵花宝典。</p>
-        <div class="gift-btn">
-          <input type="button" class="btn btn-danger" value="删除"/>
-          <input type="button" class="btn btn-success" value="编辑"/>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-    <div class="gift-box">
-      <img class="gift-img col-md-5" src="img/gift3.jpg">
-      <div class="col-md-7 gift-info">
-        <p>名称：公仔</p>
-        <p>积分：1200</p>
-        <p class="gift-dsp">描述：公仔更具有文化内涵，更富有故事情节，更富有个性和人格化的概念。因此公仔更受到成年人的宠爱和喜欢。</p>
-        <div class="gift-btn">
-          <input type="button" class="btn btn-danger" value="删除"/>
-          <input type="button" class="btn btn-success" value="编辑"/>
+          <input type="button" class="btn btn-danger" value="删除" data-id="3">
+          <input type="button" class="btn btn-success" value="编辑" data-id="1">
           <div class="clear"></div>
         </div>
       </div>
       <div class="clear"></div>
     </div>
   </div>
-
   <div class="row tb-toolbar">
     <input type="button" class="btn btn-primary" value="新增" data-toggle="modal" data-target="#add-modal"/>
     <ul class="pagination">
@@ -83,10 +54,33 @@
 
 <div class="modal" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content input-modal">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
         <h4 class="modal-title">添加礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+        <form enctype="multipart/form-data" method="post" id="add-gift-form">
+          <input type="text" id="giftName" class="form-control" placeholder="名称">
+          <input type="number" id="giftCredit" class="form-control" placeholder="积分(整数)">
+          <textarea type="text" id="giftDes" class="form-control" placeholder="描述" rows="3"></textarea>
+          <label>礼品图片：</label>
+          <input type="file" id="giftPic">
+        </form>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="add-gift-btn">确定</button>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="change-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">编辑礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
       </div>
       <div class="modal-body">
         <input type="text">
@@ -109,7 +103,7 @@
     isLogin();
   })
 
-
+  var giftList = null;
   //获取礼品列表
     $.ajax({
       url: baseUrl + 'getPresent',
@@ -125,6 +119,7 @@
       success: function (data) {
         var obj = eval(data);
         if (obj['success']) {
+          giftList = obj['data'];
           for( var i = 0; i < obj['data'].length; i++ ) {
             var giftBox = ' <div class="gift-box"> <img class="gift-img col-md-5" src="http://'
               + obj['data'][i].pictureUrl
@@ -134,7 +129,11 @@
               + obj['data'][i].credit
               + '</p> <p class="gift-dsp">描述：'
               + obj['data'][i].description
-              + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除"/> <input type="button" class="btn btn-success" value="编辑"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
+              + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#change-modal" data-id="'
+              + obj['data'][i].id
+              + '"/> <input type="button" class="btn btn-success" value="编辑 data-toggle="modal" data-target="#change-modal" data-id="'
+              + obj['data'][i].id
+              + '"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
           }
         } else {
@@ -142,6 +141,31 @@
         }
       }
     });
+
+  $('.btn-danger').click(function(){
+    alert(this.dataset.id)
+
+  })
+
+  $('.btn-success').click(function(){
+    alert(this.dataset.id)
+  })
+
+  $('#add-gift-btn').click(function(){
+    if ( $('#giftName').val() == '' ) {
+      alert('礼品名称不能为空');
+    } else if ( $('#giftCredit').val() == '' ) {
+      alert('礼品积分不能为空');
+    } else if ( $('#giftDes').val() == '' ) {
+      alert('礼品描述不能为空');
+    } else if ( $('#giftPic').val() == '' ) {
+      alert('礼品图片不能为空');
+    } else {
+      alert(baseUrl + 'addPresent');
+      $('add-gift-form').action= baseUrl + 'addPresent';
+      $('add-gift-form').submit();
+    }
+  })
 </script>
 </body>
 </html>
