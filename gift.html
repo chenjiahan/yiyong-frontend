@@ -123,7 +123,7 @@
         size:10
       },
       success: function (data) {
-        var obj = $.parseJSON(data);
+        var obj = eval(data);
         if (obj['success']) {
           for( var i = 0; i < obj['data'].length; i++ ) {
             alert(obj['data']);
