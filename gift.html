@@ -64,6 +64,7 @@
   </div>
 
   <div class="row tb-toolbar">
+    <input type="button" class="btn btn-primary" value="新增" data-toggle="modal" data-target="#add-modal"/>
     <ul class="pagination">
       <li>
         <a href="#" aria-label="Previous">
@@ -80,32 +81,16 @@
   </div>
 </section>
 
-<div class="modal" id="pass-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
+<div class="modal" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        <h4 class="modal-title">添加礼品<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
       </div>
       <div class="modal-body">
-        <p>将选中客户设为通过审核吗？</p>
-        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">确定</button>
-        <div class="clear"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal" id="unPass-modal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
-      </div>
-      <div class="modal-body">
-        <p>将选中客户设为不通过审核吗？</p>
+        <input type="text">
+        <input type="">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary">确定</button>
         <div class="clear"></div>
@@ -140,15 +125,15 @@
       success: function (data) {
         var obj = eval(data);
         if (obj['success']) {
-          for(var o in obj['data']){
+          for( var i = 0; i < obj['data'].length; i++ ) {
             var giftBox = ' <div class="gift-box"> <img class="gift-img col-md-5" src="'
-              + o['pictureUrl']
+              + obj['data']['pictureUrl']
               + '> <div class="col-md-7 gift-info"> <p>名称：'
-              + o['name']
+              + obj['data']['name']
               + '</p> <p>积分：'
-              + o['credit']
+              + obj['data']['credit']
               + '</p> <p class="gift-dsp">描述：'
-              + o['description']
+              + obj['data']['description']
               + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除"/> <input type="button" class="btn btn-success" value="编辑"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
           }
