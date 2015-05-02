@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <title>礼品管理 - 易用联友积分管理系统</title>
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link href="img/favicon.ico" rel="shortcut icon">
+<body>
+<!--顶部导航条-->
+<script src="head.html"></script>
+<section class="container">
+  <div class="row">
+    <ol class="breadcrumb">
+      <li class="active">积分管理系统</li>
+      <li class="active">积分兑换</li>
+      <li><a href="">礼品管理</a></li>
+    </ol>
+  </div>
+  <div class="row">
+    <div class="gift-box">
+      <img class="gift-img col-md-5" src="img/gift1.jpg">
+      <div class="col-md-7 gift-info">
+        <p>名称：雨伞</p>
+        <p>积分：50</p>
+        <p class="gift-dsp">描述：雨伞一把，送给敌人最好的礼物。你若不举，便是晴天。</p>
+        <div class="gift-btn">
+          <input type="button" class="btn btn-danger" value="删除"/>
+          <input type="button" class="btn btn-success" value="编辑"/>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="gift-box">
+      <img class="gift-img col-md-5" src="img/gift2.jpg">
+      <div class="col-md-7 gift-info">
+        <p>名称：大宝剑</p>
+        <p>积分：800</p>
+        <p class="gift-dsp">描述：我送你大大宝剑，修炼葵花宝典。</p>
+        <div class="gift-btn">
+          <input type="button" class="btn btn-danger" value="删除"/>
+          <input type="button" class="btn btn-success" value="编辑"/>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="gift-box">
+      <img class="gift-img col-md-5" src="img/gift3.jpg">
+      <div class="col-md-7 gift-info">
+        <p>名称：公仔</p>
+        <p>积分：1200</p>
+        <p class="gift-dsp">描述：公仔更具有文化内涵，更富有故事情节，更富有个性和人格化的概念。因此公仔更受到成年人的宠爱和喜欢。</p>
+        <div class="gift-btn">
+          <input type="button" class="btn btn-danger" value="删除"/>
+          <input type="button" class="btn btn-success" value="编辑"/>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="row tb-toolbar">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+      <li><a href="#">1</a></li>
+      <li>
+        <a href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="modal" id="pass-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+        <p>将选中客户设为通过审核吗？</p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确定</button>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="unPass-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+      </div>
+      <div class="modal-body">
+        <p>将选中客户设为不通过审核吗？</p>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">确定</button>
+        <div class="clear"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+  $(document).ready(function(){
+    //判断是否登录
+    isLogin();
+  })
+
+
+  //获取礼品列表
+    $.ajax({
+      url: baseUrl + 'getPresent',
+      xhrFields: {
+        withCredentials: true
+      },
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        page:1,
+        size:10
+      },
+      success: function (data) {
+        var obj = eval(data);
+        if (obj['success']) {
+          window.location.href = 'check.html'
+        } else {
+          alert(obj['data']['errorMsg']);
+        }
+      }
+    });
+</script>
+</body>
+</html>

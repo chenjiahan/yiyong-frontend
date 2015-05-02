@@ -11,6 +11,7 @@ body {
 .container {
   max-width: 1000px!important;
 }
+
 /*--nav--*/
 .navbar {
   -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
@@ -83,7 +84,6 @@ tbody th {
   box-shadow: 0 1px 4px rgba(0,0,0,0.065);
 }
 
-
 /*--modal--*/
 .modal-body p {
   font-size: 16px;
@@ -116,4 +116,43 @@ tbody th {
   border:none;
   margin-top:10px;
   float: right;
+}
+
+/*--gift--*/
+.gift-box {
+  border: 1px solid #d4d4d4;
+  -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  -moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  width:49%;
+  background: #fcfcfc;
+  float: left;
+  margin:0 0.5% 20px;
+  min-height: 200px;
+  border-radius: 4px;
+}
+.gift-img {
+  width:100%;
+  height:auto;
+  margin:15px 0 15px;
+  border-radius: 4px;
+  max-height: 160px;
+}
+.gift-info {
+  padding: 25px 15px 0 5px!important;
+}
+.gift-btn {
+  margin:5px 0 15px 0;
+}
+.gift-btn input{
+  float: right;
+  margin-left:10px;
+  padding: 3px 8px!important;
+  margin-top:-6px;
+  margin-bottom: -5px;
+  font-size: 14px;
+  border-radius: 0;
+}
+.gift-dsp {
+  height:80px;
 }
