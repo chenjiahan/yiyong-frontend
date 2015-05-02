@@ -145,6 +145,7 @@
   var deleteId = null;
   $('.btn-danger').click(function(){
     deleteId = this.dataset.id;
+    alert(deleteId);
   })
   $('#sure-delete').click(function(){
     $.ajax({
