@@ -123,19 +123,19 @@
         size:10
       },
       success: function (data) {
-        var obj = eval(data);
+        var obj = $.parseJSON(data);
         if (obj['success']) {
           for( var i = 0; i < obj['data'].length; i++ ) {
             alert(obj['data']);
-            alert(obj['data']['name']);
+            alert(obj['data'].name);
             var giftBox = ' <div class="gift-box"> <img class="gift-img col-md-5" src="'
-              + obj['data']['pictureUrl']
+              + obj['data'].pictureUrl
               + '> <div class="col-md-7 gift-info"> <p>名称：'
-              + obj['data']['name']
+              + obj['data'].name
               + '</p> <p>积分：'
-              + obj['data']['credit']
+              + obj['data'].credit
               + '</p> <p class="gift-dsp">描述：'
-              + obj['data']['description']
+              + obj['data'].description
               + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除"/> <input type="button" class="btn btn-success" value="编辑"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
           }
