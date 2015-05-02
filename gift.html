@@ -129,6 +129,28 @@
               + obj['data'][i].id
               + '"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
+
+            //删除礼品
+            var deleteId = null;
+            $('.btn-danger').click(function(){
+              deleteId = this.dataset.id;
+            })
+            $('#sure-delete').click(function(){
+              $.ajax({
+                url: baseUrl + 'deletePresent',
+                xhrFields: {withCredentials: true},
+                type: 'POST',
+                dataType: 'json',
+                data: {id:deleteId},
+                success: function (data) {
+                  var obj = eval(data);
+                  if ( obj['success']) {
+                    alert('删除成功');
+                    window.location.reload();
+                  }
+                }
+              });
+            });
           }
         } else {
           alert(obj['msg']);
@@ -139,27 +161,6 @@
   $(document).ready(function(){
     //判断是否登录
     isLogin();
-    //删除礼品
-    var deleteId = null;
-    $('.btn-danger').click(function(){
-      deleteId = this.dataset.id;
-    })
-    $('#sure-delete').click(function(){
-      $.ajax({
-        url: baseUrl + 'deletePresent',
-        xhrFields: {withCredentials: true},
-        type: 'POST',
-        dataType: 'json',
-        data: {id:deleteId},
-        success: function (data) {
-          var obj = eval(data);
-          if ( obj['success']) {
-            alert('删除成功');
-            window.location.reload();
-          }
-        }
-      });
-    });
 
     //编辑礼品
     var updateId = null;
