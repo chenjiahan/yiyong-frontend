@@ -124,9 +124,9 @@
               + '</p> <p class="gift-dsp">描述：'
               + obj['data'][i].description
               + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-id="'
-              + obj['data'][i].id
+              + i
               + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-id="'
-              + obj['data'][i].id
+              + i
               + '"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
 
@@ -168,7 +168,7 @@
               } else if ( $('#giftDes2').val() == '' ) {
                 alert('礼品描述不能为空');
               } else {
-                $('#add-gift-form').ajaxSubmit(function() {
+                $('#change-gift-form').ajaxSubmit(function() {
                   alert('修改成功！');
                   window.location.reload();
                 });
