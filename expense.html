@@ -129,9 +129,9 @@
       if (obj['success']) {
         list = obj['data'];
         for( var i = 0; i < obj['data'].length; i++ ) {
-          var line = ' <tr> <th>' +
-            + obj['data'][i].name.toString()
-            +'</th> <td>  <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
+          var line = ' <tr> <th>'
+            + obj['data'][i].name
+            +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
             + i
             + '" data-id="'
             + obj['data'][i].id
