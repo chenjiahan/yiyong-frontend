@@ -62,7 +62,7 @@
       <div class="modal-body">
         <form enctype="multipart/form-data" method="post" id="add-form" action= "http://vip.lekangba.com/addRule">
           <input type="text" id="name" class="form-control" name="name" placeholder="名称">
-          <input type="text" id="content" class="form-control" name="content" placeholder="内容">
+          <textarea type="text" id="content" class="form-control" name="content" placeholder="内容" rows="3"></textarea>
         </form>
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="add-btn">确定</button>
@@ -83,7 +83,7 @@
         <form enctype="multipart/form-data" method="post" id="change-form" action= "http://vip.lekangba.com/updateRule">
           <input type="hidden" id="id2" name="id">
           <input type="text" id="name2" class="form-control" name="name" placeholder="名称">
-          <input type="text" id="content2" class="form-control" name="content" placeholder="内容">
+          <textarea type="text" id="content2" class="form-control" name="content" placeholder="内容" rows="3"></textarea>
         </form>
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="button" class="btn btn-primary" id="change-btn">确定</button>
