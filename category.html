@@ -347,12 +347,15 @@
   })
 
   //添加版本
+  var ctgId = '';
+  $('#btn-info').click(function(){
+    ctgId = this.dataset.id
+  })
   $('#add-btn2').click(function(){
     if ( $('#name3').val() == '' ) {
       alert('名称不能为空');
     } else {
-      alert(list[this.dataset.n]);
-      $('#categoryId3').val(list[this.dataset.n]['id']);
+      $('#categoryId3').val(ctgId);
       $('#add-form2').ajaxSubmit(function() {
         alert('添加成功！');
         window.location.reload();
