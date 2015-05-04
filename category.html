@@ -27,29 +27,64 @@
             <th class="col-md-6">操作</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody id="my-container" class="ctg-table">
           <tr>
             <th scope="row">用友U8</th>
             <td>
-              <input type="button" class="btn btn-primary" value="版本管理"/>
+              <input type="button" class="btn btn-info" value="添加版本"/>
               <input type="button" class="btn btn-success" value="编辑"/>
               <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.0</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.1</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.2</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
             </td>
           </tr>
           <tr>
             <th scope="row">用友T+</th>
             <td>
-              <input type="button" class="btn btn-primary" value="版本管理"/>
+              <input type="button" class="btn btn-info" value="添加版本"/>
               <input type="button" class="btn btn-success" value="编辑"/>
               <input type="button" class="btn btn-danger" value="删除"/>
             </td>
           </tr>
-          <tr>
-            <th scope="row">资产管理系统</th>
+
+          <tr class="sub-tr">
+            <th scope="row">1.0.0</th>
             <td>
-              <input type="button" class="btn btn-primary" value="版本管理"/>
-              <input type="button" class="btn btn-success" value="编辑"/>
-              <input type="button" class="btn btn-danger" value="删除"/>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.1</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.2</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
             </td>
           </tr>
           </tbody>
@@ -74,15 +109,301 @@
       </ul>
     </div>
   </section>
-</body>
+
+  <div class="modal" id="add-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content input-modal">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">添加产品类别<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" method="post" id="add-form" action= "http://vip.lekangba.com/addProductCategory">
+            <input type="text" id="name" class="form-control" name="name" placeholder="名称">
+          </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="add-btn">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="change-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content input-modal">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">修改产品类别<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" method="post" id="change-form" action= "http://vip.lekangba.com/updateProductCategory">
+            <input type="hidden" id="id2" name="id">
+            <input type="text" id="name2" class="form-control" name="name" placeholder="名称">
+          </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="change-btn">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="delete-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <p>确认删除选中的产品类别吗？</p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="sure-delete">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="add-modal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content input-modal">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">添加产品版本<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" method="post" id="add-form2" action= "http://vip.lekangba.com/addProductVersion">
+            <input type="text" id="name3" class="form-control" name="name" placeholder="名称">
+          </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="add-btn2">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="change-modal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content input-modal">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">修改产品版本<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <form enctype="multipart/form-data" method="post" id="change-form2" action= "http://vip.lekangba.com/updateProductVersion">
+            <input type="hidden" id="id4" name="id">
+            <input type="hidden" id="categoryId4" name="categoryId">
+            <input type="text" id="name4" class="form-control" name="name" placeholder="名称">
+          </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="change-btn2">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="delete-modal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">确认操作<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+        </div>
+        <div class="modal-body">
+          <p>确认删除选中的产品版本吗？</p>
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" id="sure-delete2">确定</button>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script src="js/jquery-2.1.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.form.js"></script>
 <script src="js/base.js"></script>
 <script>
+  var list = null;
+  var subList = null;
+  //获取
+  $.ajax({
+    url: baseUrl + 'getProductCategory',
+    xhrFields: {withCredentials: true},
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      page:1,
+      size:10
+    },
+    success: function (data) {
+      var obj = eval(data);
+      if (obj['success']) {
+        list = obj['data'];
+      } else {
+        alert(obj['msg']);
+      }
+    }
+  });
+
+  $.ajax({
+    url: baseUrl + 'getProductVersion',
+    xhrFields: {withCredentials: true},
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      categoryId:0,
+      page:1,
+      size:10000
+    },
+    success: function (data) {
+      var obj = eval(data);
+      if (obj['success']) {
+        subList = obj['data'];
+      } else {
+        alert(obj['msg']);
+      }
+    }
+  });
+
+  //显示产品和版本
+  for( var i = 0; i < list.length; i++ ) {
+    var line = ' <tr> <th>'
+      + list[i].name
+      +'</th> <td> <input type="button" class="btn btn-info" value="添加版本" data-toggle="modal" data-target="#add-modal2" data-n="'
+      + i
+      + '" data-id="'
+      + list[i].id
+      + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
+      + i
+      + '" data-id="'
+      + list[i].id
+      + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
+      + i
+      + '" data-id="'
+      + list[i].id
+      + '"/> </td> </tr>';
+    $('#my-container').append(line);
+    for( var j = 0; j < subList.length; j++ ) {
+      if ( subList[j].categoryId == list[i].id ) {
+        var line2 = ' <tr> <th>'
+          + subList[i].name
+          +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
+          + i
+          + '" data-id="'
+          + subList[i].id
+          + '" data-ctg-id="'
+          + subList[i].categoryId
+          '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
+          + i
+          + '" data-id="'
+          + subList[i].id
+          + '" data-ctg-id="'
+          + subList[i].categoryId
+          + '"/> </td> </tr>';
+        $('#my-container').append(line2);
+      }
+    }
+  }
+
+  //删除产品
+  var deleteId = null;
+  $('.btn-danger').click(function(){
+    deleteId = this.dataset.id;
+  })
+  $('#sure-delete').click(function(){
+    $.ajax({
+      url: baseUrl + 'deleteProductCategory',
+      xhrFields: {withCredentials: true},
+      type: 'POST',
+      dataType: 'json',
+      data: {id:deleteId},
+      success: function (data) {
+        var obj = eval(data);
+        if ( obj['success']) {
+          alert('删除成功');
+          window.location.reload();
+        }
+      }
+    });
+  });
+  //编辑产品
+  var updateNum = null;
+  $('.btn-success').click(function(){
+    updateNum = this.dataset.n;
+    $('#id2').val(list[updateNum]['id']);
+    $('#name2').val(list[updateNum]['name']);
+  });
+  $('#change-btn').click(function(){
+    if ( $('#name2').val() == '' ) {
+      alert('名称不能为空');
+    } else {
+      $('#change-form').ajaxSubmit(function() {
+        alert('修改成功！');
+        window.location.reload();
+      });
+    }
+  })
+
+  //删除版本
+  var deleteId = null;
+  $('.btn-danger').click(function(){
+    deleteId = this.dataset.id;
+  })
+  $('#sure-delete').click(function(){
+    $.ajax({
+      url: baseUrl + 'deleteCategoryVersion',
+      xhrFields: {withCredentials: true},
+      type: 'POST',
+      dataType: 'json',
+      data: {id:deleteId},
+      success: function (data) {
+        var obj = eval(data);
+        if ( obj['success']) {
+          alert('删除成功');
+          window.location.reload();
+        }
+      }
+    });
+  });
+  //编辑版本
+  var updateNum = null;
+  $('.btn-success').click(function(){
+    updateNum = this.dataset.n;
+    $('#id4').val(list[updateNum]['id']);
+    $('#categoryId4').val(list[updateNum]['category']);
+    $('#name4').val(list[updateNum]['name']);
+  });
+  $('#change-btn2').click(function(){
+    if ( $('#name4').val() == '' ) {
+      alert('名称不能为空');
+    } else {
+      $('#change-form2').ajaxSubmit(function() {
+        alert('修改成功！');
+        window.location.reload();
+      });
+    }
+  })
+
   $(document).ready(function(){
     //判断是否登录
     isLogin();
+  })
+
+  //添加
+  $('#add-btn').click(function(){
+    if ( $('#name').val() == '' ) {
+      alert('名称不能为空');
+    } else {
+      $('#add-form').ajaxSubmit(function() {
+        alert('添加成功！');
+        window.location.reload();
+      });
+    }
   })
 </script>
 </body>

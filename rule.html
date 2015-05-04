@@ -23,8 +23,8 @@
       <table class="table table-hover">
         <thead>
         <tr>
-          <th class="col-md-3 align-center">规则名称</th>
-          <th class="col-md-6">规则内容</th>
+          <th class="col-md-4 align-center">规则名称</th>
+          <th class="col-md-5">规则内容</th>
           <th class="col-md-3">操作</th>
         </tr>
         </thead>
@@ -176,6 +176,7 @@
           updateNum = this.dataset.n;
           $('#id2').val(list[updateNum]['id']);
           $('#name2').val(list[updateNum]['name']);
+          $('#content2').val(list[updateNum]['content']);
         });
         $('#change-btn').click(function(){
           if ( $('#name2').val() == '' ) {
