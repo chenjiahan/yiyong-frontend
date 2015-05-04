@@ -305,7 +305,7 @@
               $('.btn-success').click(function(){
                 updateNum = this.dataset.n;
                 $('#id4').val(list[updateNum]['id']);
-                $('#categoryId4').val(list[updateNum]['category']);
+                $('#categoryId4').val(list[updateNum]['categoryId']);
                 $('#name4').val(list[updateNum]['name']);
               });
               $('#change-btn2').click(function(){
@@ -351,7 +351,7 @@
     if ( $('#name3').val() == '' ) {
       alert('名称不能为空');
     } else {
-      $('#categoryId3').val(list[this.dataset.n]['category']);
+      $('#categoryId3').val(list[this.dataset.n]['categoryId']);
       $('#add-form2').ajaxSubmit(function() {
         alert('添加成功！');
         window.location.reload();
