@@ -221,19 +221,19 @@
                 for( var j = 0; j < subList.length; j++ ) {
                   if ( subList[j].categoryId == list[i].id ) {
                     var line2 = ' <tr class="sub-tr"> <th>'
-                      + subList[i].name
+                      + subList[j].name
                       +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
                       + i
                       + '" data-id="'
-                      + subList[i].id
+                      + subList[j].id
                       + '" data-ctg-id="'
-                      + subList[i].categoryId
+                      + subList[j].categoryId
                     '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
                     + i
                     + '" data-id="'
-                    + subList[i].id
+                    + subList[j].id
                     + '" data-ctg-id="'
-                    + subList[i].categoryId
+                    + subList[j].categoryId
                     + '"/> </td> </tr>';
                     $('#my-container').append(line2);
                   }
@@ -331,6 +331,7 @@
                   $('#categoryId3').val(ctgId);
                   $('#add-form2').ajaxSubmit(function() {
                     alert('添加成功！');
+                    window.location.reload();
                   });
                 }
               })
