@@ -123,10 +123,14 @@
               + obj['data'][i].credit
               + '</p> <p class="gift-dsp">描述：'
               + obj['data'][i].description
-              + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-id="'
+              + '</p> <div class="gift-btn"> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
               + i
-              + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-id="'
+              + '" data-id="'
+              + obj['data'][i].id
+              + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
               + i
+              + '" data-id="'
+              + obj['data'][i].id
               + '"/> <div class="clear"></div> </div> </div> <div class="clear"></div> </div>';
             $('#gift-container').append(giftBox);
 
@@ -155,7 +159,7 @@
             //编辑礼品
             var updateId = null;
             $('.btn-success').click(function(){
-              updateId = this.dataset.id;
+              updateId = this.dataset.n;
               $('#giftName2').val(giftList[updateId]['name']);
               $('#giftCredit2').val(giftList[updateId]['credit']);
               $('#giftDes2').val(giftList[updateId]['description']);
