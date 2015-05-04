@@ -351,6 +351,7 @@
     if ( $('#name3').val() == '' ) {
       alert('名称不能为空');
     } else {
+      alert($('#categoryId3').val(list[this.dataset.n]));
       $('#categoryId3').val(list[this.dataset.n]['id']);
       $('#add-form2').ajaxSubmit(function() {
         alert('添加成功！');
