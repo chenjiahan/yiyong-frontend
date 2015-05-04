@@ -28,6 +28,65 @@
           </tr>
           </thead>
           <tbody id="my-container" class="ctg-table">
+          <tr>
+            <th scope="row">用友U8</th>
+            <td>
+              <input type="button" class="btn btn-info" value="添加版本"/>
+              <input type="button" class="btn btn-success" value="编辑"/>
+              <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.0</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.1</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.2</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">用友T+</th>
+            <td>
+              <input type="button" class="btn btn-info" value="添加版本"/>
+              <input type="button" class="btn btn-success" value="编辑"/>
+              <input type="button" class="btn btn-danger" value="删除"/>
+            </td>
+          </tr>
+
+          <tr class="sub-tr">
+            <th scope="row">1.0.0</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.1</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
+          <tr class="sub-tr">
+            <th scope="row">1.0.2</th>
+            <td>
+              <input type="button" class="btn btn-default" value="编辑"/>
+              <input type="button" class="btn btn-default" value="删除"/>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -219,7 +278,7 @@
                 $('#my-container').append(line);
                 for( var j = 0; j < subList.length; j++ ) {
                   if ( subList[j].categoryId == list[i].id ) {
-                    var line2 = ' <tr> <th>'
+                    var line2 = ' <tr class="sub-tr"> <th>'
                       + subList[i].name
                       +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
                       + i
