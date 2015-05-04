@@ -244,150 +244,148 @@
       var obj = eval(data);
       if (obj['success']) {
         list = obj['data'];
+        $.ajax({
+          url: baseUrl + 'getProductVersion',
+          xhrFields: {withCredentials: true},
+          type: 'POST',
+          dataType: 'json',
+          data: {
+            categoryId:0,
+            page:1,
+            size:10000
+          },
+          success: function (data) {
+            var obj = eval(data);
+            if (obj['success']) {
+              subList = obj['data'];
+              //显示产品和版本
+              for( var i = 0; i < list.length; i++ ) {
+                var line = ' <tr> <th>'
+                  + list[i].name
+                  +'</th> <td> <input type="button" class="btn btn-info" value="添加版本" data-toggle="modal" data-target="#add-modal2" data-n="'
+                  + i
+                  + '" data-id="'
+                  + list[i].id
+                  + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
+                  + i
+                  + '" data-id="'
+                  + list[i].id
+                  + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
+                  + i
+                  + '" data-id="'
+                  + list[i].id
+                  + '"/> </td> </tr>';
+                $('#my-container').append(line);
+                for( var j = 0; j < subList.length; j++ ) {
+                  if ( subList[j].categoryId == list[i].id ) {
+                    var line2 = ' <tr> <th>'
+                      + subList[i].name
+                      +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
+                      + i
+                      + '" data-id="'
+                      + subList[i].id
+                      + '" data-ctg-id="'
+                      + subList[i].categoryId
+                    '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
+                    + i
+                    + '" data-id="'
+                    + subList[i].id
+                    + '" data-ctg-id="'
+                    + subList[i].categoryId
+                    + '"/> </td> </tr>';
+                    $('#my-container').append(line2);
+                  }
+                }
+              }
+
+              //删除产品
+              var deleteId = null;
+              $('.btn-danger').click(function(){
+                deleteId = this.dataset.id;
+              })
+              $('#sure-delete').click(function(){
+                $.ajax({
+                  url: baseUrl + 'deleteProductCategory',
+                  xhrFields: {withCredentials: true},
+                  type: 'POST',
+                  dataType: 'json',
+                  data: {id:deleteId},
+                  success: function (data) {
+                    var obj = eval(data);
+                    if ( obj['success']) {
+                      alert('删除成功');
+                      window.location.reload();
+                    }
+                  }
+                });
+              });
+              //编辑产品
+              var updateNum = null;
+              $('.btn-success').click(function(){
+                updateNum = this.dataset.n;
+                $('#id2').val(list[updateNum]['id']);
+                $('#name2').val(list[updateNum]['name']);
+              });
+              $('#change-btn').click(function(){
+                if ( $('#name2').val() == '' ) {
+                  alert('名称不能为空');
+                } else {
+                  $('#change-form').ajaxSubmit(function() {
+                    alert('修改成功！');
+                    window.location.reload();
+                  });
+                }
+              })
+
+              //删除版本
+              var deleteId = null;
+              $('.btn-danger').click(function(){
+                deleteId = this.dataset.id;
+              })
+              $('#sure-delete').click(function(){
+                $.ajax({
+                  url: baseUrl + 'deleteCategoryVersion',
+                  xhrFields: {withCredentials: true},
+                  type: 'POST',
+                  dataType: 'json',
+                  data: {id:deleteId},
+                  success: function (data) {
+                    var obj = eval(data);
+                    if ( obj['success']) {
+                      alert('删除成功');
+                      window.location.reload();
+                    }
+                  }
+                });
+              });
+              //编辑版本
+              var updateNum = null;
+              $('.btn-success').click(function(){
+                updateNum = this.dataset.n;
+                $('#id4').val(list[updateNum]['id']);
+                $('#categoryId4').val(list[updateNum]['category']);
+                $('#name4').val(list[updateNum]['name']);
+              });
+              $('#change-btn2').click(function(){
+                if ( $('#name4').val() == '' ) {
+                  alert('名称不能为空');
+                } else {
+                  $('#change-form2').ajaxSubmit(function() {
+                    alert('修改成功！');
+                    window.location.reload();
+                  });
+                }
+              })
+            } else {
+              alert(obj['msg']);
+            }
+          }
+        });
       } else {
         alert(obj['msg']);
       }
     }
   });
-
-  $.ajax({
-    url: baseUrl + 'getProductVersion',
-    xhrFields: {withCredentials: true},
-    type: 'POST',
-    dataType: 'json',
-    data: {
-      categoryId:0,
-      page:1,
-      size:10000
-    },
-    success: function (data) {
-      var obj = eval(data);
-      if (obj['success']) {
-        subList = obj['data'];
-      } else {
-        alert(obj['msg']);
-      }
-    }
-  });
-
-  //显示产品和版本
-  for( var i = 0; i < list.length; i++ ) {
-    var line = ' <tr> <th>'
-      + list[i].name
-      +'</th> <td> <input type="button" class="btn btn-info" value="添加版本" data-toggle="modal" data-target="#add-modal2" data-n="'
-      + i
-      + '" data-id="'
-      + list[i].id
-      + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
-      + i
-      + '" data-id="'
-      + list[i].id
-      + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
-      + i
-      + '" data-id="'
-      + list[i].id
-      + '"/> </td> </tr>';
-    $('#my-container').append(line);
-    for( var j = 0; j < subList.length; j++ ) {
-      if ( subList[j].categoryId == list[i].id ) {
-        var line2 = ' <tr> <th>'
-          + subList[i].name
-          +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
-          + i
-          + '" data-id="'
-          + subList[i].id
-          + '" data-ctg-id="'
-          + subList[i].categoryId
-          '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
-          + i
-          + '" data-id="'
-          + subList[i].id
-          + '" data-ctg-id="'
-          + subList[i].categoryId
-          + '"/> </td> </tr>';
-        $('#my-container').append(line2);
-      }
-    }
-  }
-
-  //删除产品
-  var deleteId = null;
-  $('.btn-danger').click(function(){
-    deleteId = this.dataset.id;
-  })
-  $('#sure-delete').click(function(){
-    $.ajax({
-      url: baseUrl + 'deleteProductCategory',
-      xhrFields: {withCredentials: true},
-      type: 'POST',
-      dataType: 'json',
-      data: {id:deleteId},
-      success: function (data) {
-        var obj = eval(data);
-        if ( obj['success']) {
-          alert('删除成功');
-          window.location.reload();
-        }
-      }
-    });
-  });
-  //编辑产品
-  var updateNum = null;
-  $('.btn-success').click(function(){
-    updateNum = this.dataset.n;
-    $('#id2').val(list[updateNum]['id']);
-    $('#name2').val(list[updateNum]['name']);
-  });
-  $('#change-btn').click(function(){
-    if ( $('#name2').val() == '' ) {
-      alert('名称不能为空');
-    } else {
-      $('#change-form').ajaxSubmit(function() {
-        alert('修改成功！');
-        window.location.reload();
-      });
-    }
-  })
-
-  //删除版本
-  var deleteId = null;
-  $('.btn-danger').click(function(){
-    deleteId = this.dataset.id;
-  })
-  $('#sure-delete').click(function(){
-    $.ajax({
-      url: baseUrl + 'deleteCategoryVersion',
-      xhrFields: {withCredentials: true},
-      type: 'POST',
-      dataType: 'json',
-      data: {id:deleteId},
-      success: function (data) {
-        var obj = eval(data);
-        if ( obj['success']) {
-          alert('删除成功');
-          window.location.reload();
-        }
-      }
-    });
-  });
-  //编辑版本
-  var updateNum = null;
-  $('.btn-success').click(function(){
-    updateNum = this.dataset.n;
-    $('#id4').val(list[updateNum]['id']);
-    $('#categoryId4').val(list[updateNum]['category']);
-    $('#name4').val(list[updateNum]['name']);
-  });
-  $('#change-btn2').click(function(){
-    if ( $('#name4').val() == '' ) {
-      alert('名称不能为空');
-    } else {
-      $('#change-form2').ajaxSubmit(function() {
-        alert('修改成功！');
-        window.location.reload();
-      });
-    }
-  })
 
   $(document).ready(function(){
     //判断是否登录
