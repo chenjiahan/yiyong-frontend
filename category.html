@@ -203,38 +203,38 @@
               //显示产品和版本
               for( var i = 0; i < list.length; i++ ) {
                 var line = ' <tr> <th>'
-                  + list[i].name
-                  +'</th> <td> <input type="button" class="btn btn-info" value="添加版本" data-toggle="modal" data-target="#add-modal2" data-n="'
-                  + i
-                  + '" data-id="'
-                  + list[i].id
-                  + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
-                  + i
-                  + '" data-id="'
-                  + list[i].id
-                  + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
-                  + i
-                  + '" data-id="'
-                  + list[i].id
-                  + '"/> </td> </tr>';
+                            + list[i].name
+                            +'</th> <td> <input type="button" class="btn btn-info" value="添加版本" data-toggle="modal" data-target="#add-modal2" data-n="'
+                            + i
+                            + '" data-id="'
+                            + list[i].id
+                            + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
+                            + i
+                            + '" data-id="'
+                            + list[i].id
+                            + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
+                            + i
+                            + '" data-id="'
+                            + list[i].id
+                            + '"/> </td> </tr>';
                 $('#my-container').append(line);
                 for( var j = 0; j < subList.length; j++ ) {
                   if ( subList[j].categoryId == list[i].id ) {
                     var line2 = ' <tr class="sub-tr"> <th>'
-                      + subList[j].name
-                      +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
-                      + i
-                      + '" data-id="'
-                      + subList[j].id
-                      + '" data-ctg-id="'
-                      + subList[j].categoryId
-                    '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
-                    + i
-                    + '" data-id="'
-                    + subList[j].id
-                    + '" data-ctg-id="'
-                    + subList[j].categoryId
-                    + '"/> </td> </tr>';
+                                + subList[j].name
+                                +'</th> <td> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
+                                + j
+                                + '" data-id="'
+                                + subList[j].id
+                                + '" data-ctg-id="'
+                                + subList[j].categoryId
+                                + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
+                                + i
+                                + '" data-id="'
+                                + subList[j].id
+                                + '" data-ctg-id="'
+                                + subList[j].categoryId
+                                + '"/> </td> </tr>';
                     $('#my-container').append(line2);
                   }
                 }
