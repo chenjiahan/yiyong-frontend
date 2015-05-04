@@ -356,6 +356,7 @@
       alert('名称不能为空');
     } else {
       $('#categoryId3').val(ctgId);
+      alert('categoryId=' + $('#categoryId3').val() + 'name=' + $('#name3').val());
       $('#add-form2').ajaxSubmit(function() {
         alert('添加成功！');
       });
