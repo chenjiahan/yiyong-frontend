@@ -333,12 +333,24 @@
     isLogin();
   })
 
-  //添加
+  //添加产品
   $('#add-btn').click(function(){
     if ( $('#name').val() == '' ) {
       alert('名称不能为空');
     } else {
       $('#add-form').ajaxSubmit(function() {
+        alert('添加成功！');
+        window.location.reload();
+      });
+    }
+  })
+
+  //添加版本
+  $('#add-btn2').click(function(){
+    if ( $('#name').val() == '' ) {
+      alert('名称不能为空');
+    } else {
+      $('#add-form2').ajaxSubmit(function() {
         alert('添加成功！');
         window.location.reload();
       });
