@@ -229,7 +229,7 @@
                                 + '" data-ctg-id="'
                                 + subList[j].categoryId
                                 + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
-                                + i
+                                + j
                                 + '" data-id="'
                                 + subList[j].id
                                 + '" data-ctg-id="'
@@ -284,7 +284,7 @@
               $('.btn-danger').click(function(){
                 deleteId = this.dataset.id;
               })
-              $('#sure-delete').click(function(){
+              $('#sure-delete2').click(function(){
                 $.ajax({
                   url: baseUrl + 'deleteCategoryVersion',
                   xhrFields: {withCredentials: true},
