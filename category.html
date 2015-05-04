@@ -116,6 +116,7 @@
         </div>
         <div class="modal-body">
           <form enctype="multipart/form-data" method="post" id="add-form2" action= "http://vip.lekangba.com/addProductVersion">
+            <input type="hidden" id="categoryId3" name="categoryId">
             <input type="text" id="name3" class="form-control" name="name" placeholder="名称">
           </form>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
@@ -350,6 +351,7 @@
     if ( $('#name3').val() == '' ) {
       alert('名称不能为空');
     } else {
+      $('#categoryId3').val(list[this.dataset.n]['category']);
       $('#add-form2').ajaxSubmit(function() {
         alert('添加成功！');
         window.location.reload();
