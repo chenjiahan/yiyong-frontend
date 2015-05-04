@@ -27,7 +27,7 @@
             <th class="col-md-6">操作</th>
           </tr>
           </thead>
-          <tbody id="exp-container">
+          <tbody id="my-container">
           <tr>
             <th>软件费</th>
             <td>
@@ -87,11 +87,11 @@
           <h4 class="modal-title">添加消费类别<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
         </div>
         <div class="modal-body">
-          <form enctype="multipart/form-data" method="post" id="add-exp-form" action= "http://vip.lekangba.com/addConsumptionType">
+          <form enctype="multipart/form-data" method="post" id="add-form" action= "http://vip.lekangba.com/addConsumptionType">
             <input type="text" id="name" class="form-control" name="name" placeholder="名称">
           </form>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="add-gift-btn">确定</button>
+          <button type="button" class="btn btn-primary" id="add-btn">确定</button>
           <div class="clear"></div>
         </div>
       </div>
@@ -106,12 +106,12 @@
           <h4 class="modal-title">修改消费类别<a class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
         </div>
         <div class="modal-body">
-          <form enctype="multipart/form-data" method="post" id="change-exp-form" action= "http://vip.lekangba.com/updateConsumptionType">
+          <form enctype="multipart/form-data" method="post" id="change-form" action= "http://vip.lekangba.com/updateConsumptionType">
             <input type="hidden" id="id2" name="id">
             <input type="text" id="name2" class="form-control" name="name" placeholder="名称">
           </form>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary" id="change-gift-btn">确定</button>
+          <button type="button" class="btn btn-primary" id="change-btn">确定</button>
           <div class="clear"></div>
         </div>
       </div>
@@ -140,8 +140,8 @@
 <script src="js/base.js"></script>
 
 <script>
-  var expList = null;
-  //获取消费类别
+  var list = null;
+  //获取
   $.ajax({
     url: baseUrl + 'getConsumptionType',
     xhrFields: {withCredentials: true},
@@ -154,60 +154,61 @@
     success: function (data) {
       var obj = eval(data);
       if (obj['success']) {
-        expList = obj['data'];
+        list = obj['data'];
         for( var i = 0; i < obj['data'].length; i++ ) {
-          var expLine = ' <tr> <th>' +
-            '软件费' +
-            '</th> <td>  <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
+          var line = ' <tr> <th>' +
+            + obj['data'][i].name
+            +'</th> <td>  <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
             + i
             + '" data-id="'
             + obj['data'][i].id
-            + '"/> <input type="button" class="btn btn-success" value="编辑" data-toggle="modal" data-target="#change-modal" data-n="'
+            + '"/> <input type="button" class="btn btn-danger" value="删除" data-toggle="modal" data-target="#delete-modal" data-n="'
             + i
             + '" data-id="'
             + obj['data'][i].id
             + '"/> </td> </tr>';
-          $('#exp-container').append(expLine);
-
-          //删除消费类别
-          var deleteId = null;
-          $('.btn-danger').click(function(){
-            deleteId = this.dataset.id;
-          })
-          $('#sure-delete').click(function(){
-            $.ajax({
-              url: baseUrl + 'deleteConsumptionType',
-              xhrFields: {withCredentials: true},
-              type: 'POST',
-              dataType: 'json',
-              data: {id:deleteId},
-              success: function (data) {
-                var obj = eval(data);
-                if ( obj['success']) {
-                  alert('删除成功');
-                  window.location.reload();
-                }
-              }
-            });
-          });
-
-          //编辑礼品
-          var updateId = null;
-          $('.btn-success').click(function(){
-            updateId = this.dataset.id;
-            $('#name2').val(expList[updateId]['name']);
-          });
-          $('#change-gift-btn').click(function(){
-            if ( $('#name2').val() == '' ) {
-              alert('名称不能为空');
-            } else {
-              $('#change-exp-form').ajaxSubmit(function() {
-                alert('修改成功！');
-                window.location.reload();
-              });
-            }
-          })
+          $('#my-container').append(line);
         }
+
+        //删除
+        var deleteId = null;
+        $('.btn-danger').click(function(){
+          deleteId = this.dataset.id;
+        })
+        $('#sure-delete').click(function(){
+          $.ajax({
+            url: baseUrl + 'deleteConsumptionType',
+            xhrFields: {withCredentials: true},
+            type: 'POST',
+            dataType: 'json',
+            data: {id:deleteId},
+            success: function (data) {
+              var obj = eval(data);
+              if ( obj['success']) {
+                alert('删除成功');
+                window.location.reload();
+              }
+            }
+          });
+        });
+
+        //编辑
+        var updateNum = null;
+        $('.btn-success').click(function(){
+          updateNum = this.dataset.n;
+          $('#id2').val(list[updateNum]['id']);
+          $('#name2').val(list[updateNum]['name']);
+        });
+        $('#change-btn').click(function(){
+          if ( $('#name2').val() == '' ) {
+            alert('名称不能为空');
+          } else {
+            $('#change-form').ajaxSubmit(function() {
+              alert('修改成功！');
+              window.location.reload();
+            });
+          }
+        })
       } else {
         alert(obj['msg']);
       }
@@ -219,12 +220,12 @@
     isLogin();
   })
 
-  //添加礼品
-  $('#add-gift-btn').click(function(){
+  //添加
+  $('#add-btn').click(function(){
     if ( $('#name').val() == '' ) {
       alert('名称不能为空');
     } else {
-      $('#add-exp-form').ajaxSubmit(function() {
+      $('#add-form').ajaxSubmit(function() {
         alert('添加成功！');
         window.location.reload();
       });
