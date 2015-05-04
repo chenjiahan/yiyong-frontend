@@ -222,13 +222,13 @@
                   if ( subList[j].categoryId == list[i].id ) {
                     var line2 = ' <tr class="sub-tr"> <th>'
                                 + subList[j].name
-                                +'</th> <td> <input type="button" class="btn btn-primary" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
+                                +'</th> <td> <input type="button" class="btn btn-default" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
                                 + j
                                 + '" data-id="'
                                 + subList[j].id
                                 + '" data-ctg-id="'
                                 + subList[j].categoryId
-                                + '"/> <input type="button" class="btn btn-primary" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
+                                + '"/> <input type="button" class="btn btn-default" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
                                 + j
                                 + '" data-id="'
                                 + subList[j].id
@@ -286,7 +286,7 @@
               })
               $('#sure-delete2').click(function(){
                 $.ajax({
-                  url: baseUrl + 'deleteCategoryVersion',
+                  url: baseUrl + 'deleteProductVersion',
                   xhrFields: {withCredentials: true},
                   type: 'POST',
                   dataType: 'json',
@@ -304,9 +304,9 @@
               var updateNum = null;
               $('.btn-success').click(function(){
                 updateNum = this.dataset.n;
-                $('#id4').val(list[updateNum]['id']);
-                $('#categoryId4').val(list[updateNum]['categoryId']);
-                $('#name4').val(list[updateNum]['name']);
+                $('#id4').val(subList[updateNum]['id']);
+                $('#categoryId4').val(subList[updateNum]['categoryId']);
+                $('#name4').val(subList[updateNum]['name']);
               });
               $('#change-btn2').click(function(){
                 if ( $('#name4').val() == '' ) {
