@@ -222,13 +222,13 @@
                   if ( subList[j].categoryId == list[i].id ) {
                     var line2 = ' <tr class="sub-tr"> <th>'
                                 + subList[j].name
-                                +'</th> <td> <input type="button" class="btn btn-default" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
+                                +'</th> <td> <input type="button" class="btn btn-default btn-update-v" value="编辑" data-toggle="modal" data-target="#change-modal2" data-n="'
                                 + j
                                 + '" data-id="'
                                 + subList[j].id
                                 + '" data-ctg-id="'
                                 + subList[j].categoryId
-                                + '"/> <input type="button" class="btn btn-default" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
+                                + '"/> <input type="button" class="btn btn-default btn-delete-v" value="删除" data-toggle="modal" data-target="#delete-modal2" data-n="'
                                 + j
                                 + '" data-id="'
                                 + subList[j].id
@@ -281,7 +281,7 @@
 
               //删除版本
               var deleteId = null;
-              $('.btn-danger').click(function(){
+              $('.btn-delete-v').click(function(){
                 deleteId = this.dataset.id;
               })
               $('#sure-delete2').click(function(){
@@ -302,7 +302,7 @@
               });
               //编辑版本
               var updateNum = null;
-              $('.btn-success').click(function(){
+              $('.btn-update-v').click(function(){
                 updateNum = this.dataset.n;
                 $('#id4').val(subList[updateNum]['id']);
                 $('#categoryId4').val(subList[updateNum]['categoryId']);
