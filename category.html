@@ -317,6 +317,22 @@
                     window.location.reload();
                   });
                 }
+              });
+
+              //添加版本
+              var ctgId = null;
+              $('.btn-info').click(function(){
+                ctgId = this.dataset.id;
+              })
+              $('#add-btn2').click(function(){
+                if ( $('#name3').val() == '' ) {
+                  alert('名称不能为空');
+                } else {
+                  $('#categoryId3').val(ctgId);
+                  $('#add-form2').ajaxSubmit(function() {
+                    alert('添加成功！');
+                  });
+                }
               })
             } else {
               alert(obj['msg']);
@@ -342,24 +358,6 @@
       $('#add-form').ajaxSubmit(function() {
         alert('添加成功！');
         window.location.reload();
-      });
-    }
-  })
-
-  //添加版本
-  var ctgId = null;
-  $('.btn-info').click(function(){
-    ctgId = this.dataset.id;
-    alert(ctgId);
-  })
-  $('#add-btn2').click(function(){
-    if ( $('#name3').val() == '' ) {
-      alert('名称不能为空');
-    } else {
-      $('#categoryId3').val(ctgId);
-      alert('categoryId=' + $('#categoryId3').val() + 'name=' + $('#name3').val());
-      $('#add-form2').ajaxSubmit(function() {
-        alert('添加成功！');
       });
     }
   })
