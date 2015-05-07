@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0" />
+  <title>登录</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/mBase.css">
+  <link href="img/favicon.ico" rel="shortcut icon">
+</head>
+<body class="login-bg">
+
+<div class="login-container">
+  <div class="login-logo">
+    <img src='img/logo.png' class="">
+  </div>
+  <div class="login-box">
+    <div class="input-box">
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+        <input type="text" id="company" name="company" placeholder="公司名称">
+      </div>
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+        <input type="password" id="password" name="password" placeholder="密码">
+      </div>
+    </div>
+    <input type="button" id="login-btn" class="m-btn" value="登录">
+    <a href="mRegister.html" id="register-btn" class="m-btn">注册</a>
+  </div>
+</div>
+<script src="js/jquery-2.1.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/mBase.js"></script>
+<script>
+  $(document).ready(function(){
+    $('.login-bg').height( $(window).height() - 45 );
+  })
+
+  //登录
+  $('#login-btn').click(function(){
+    var userName = $('#userName').val();
+    var password = $('#password').val();
+    $.ajax({
+      url: baseUrl + 'adminLogin',
+      xhrFields: {
+        withCredentials:true
+      },
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        username:userName,
+        password:password
+      },
+      success: function (data) {
+        var obj = eval(data);
+        if ( obj['success'] ) {
+          window.location.href = 'check.html'
+        } else {
+          alert(obj['data']['errorMsg']);
+        }
+      }
+    });
+  })
+</script>
+</body>
+</html>

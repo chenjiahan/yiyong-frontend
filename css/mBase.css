@@ -1,0 +1,80 @@
+/*--base--*/
+* {
+  max-width:480px!important;
+  font-family: Microsoft Yahei, sans-serif;
+  outline: none!important;
+}
+input[type="date"]:before {
+  content: attr(placeholder);
+  color:#aaa;
+}
+
+/*--login--*/
+.login-bg {
+  background: url('../img/bg41.jpg') no-repeat center;
+  background-size: cover;
+}
+.login-logo {
+  margin:45px 0 45px 0;
+}
+.login-logo img {
+  display: block;
+  margin: 0 auto;
+  width:80px;
+  height: auto;
+}
+.m-btn {
+  display: block;
+  width:100%;
+  padding: 9px 15px;
+  margin:10px 0 0 0;
+  border-radius: 4px;
+  color:#fff;
+  font-size: 16px;
+  border: none;
+  text-align: center;
+}
+.m-btn:hover {
+  text-decoration: none;
+}
+#login-btn,
+#register-btn2 {
+  background: #22A18E;
+}
+#register-btn {
+  background: #eee;
+  color:#666;
+}
+.login-box {
+  padding: 0 35px;
+}
+.input-box {
+  margin-bottom: 25px;
+}
+.input-box input {
+  border: none;
+  width: 100%;
+  padding: 11px 10px 9px;
+  border-radius:  0 4px 4px 0;
+}
+.input-box select {
+  height: 40px;
+  border: none;
+  padding: 10px 6px 9px;
+}
+.input-group-addon {
+  background: #fff;
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.login-box .glyphicon {
+  color:#999;
+}
+.input-group {
+  margin-bottom: 10px;
+}
+#birthdate {
+  height: 40px;
+  background: #fff;
+}

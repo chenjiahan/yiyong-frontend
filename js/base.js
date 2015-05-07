@@ -1,5 +1,5 @@
 
-var baseUrl = 'http://vip.lekangba.com/';
+var baseUrl = 'http://vip.yiyon.com.cn/';
 
 $(document).ready(function(){
   /*

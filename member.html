@@ -111,9 +111,86 @@
 <script src="js/jquery.form.js"></script>
 <script src="js/base.js"></script>
 <script>
+  var list = null;
+  //获取
+  $.ajax({
+    url: baseUrl + 'getUser',
+    xhrFields: {withCredentials: true},
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      page:1,
+      size:10
+    },
+    success: function (data) {
+      var obj = eval(data);
+      if (obj['success']) {
+        list = obj['data'];
+        for( var i = 0; i < obj['data'].length; i++ ) {
+          var line = ' <tr> <th>';
+          $('#my-container').append(line);
+        }
+
+        //删除
+        var deleteId = null;
+        $('.btn-danger').click(function(){
+          deleteId = this.dataset.id;
+        })
+        $('#sure-delete').click(function(){
+          $.ajax({
+            url: baseUrl + 'deleteConsumptionType',
+            xhrFields: {withCredentials: true},
+            type: 'POST',
+            dataType: 'json',
+            data: {id:deleteId},
+            success: function (data) {
+              var obj = eval(data);
+              if ( obj['success']) {
+                alert('删除成功');
+                window.location.reload();
+              }
+            }
+          });
+        });
+
+        //编辑
+        var updateNum = null;
+        $('.btn-success').click(function(){
+          updateNum = this.dataset.n;
+          $('#id2').val(list[updateNum]['id']);
+          $('#name2').val(list[updateNum]['name']);
+        });
+        $('#change-btn').click(function(){
+          if ( $('#name2').val() == '' ) {
+            alert('名称不能为空');
+          } else {
+            $('#change-form').ajaxSubmit(function() {
+              alert('修改成功！');
+              window.location.reload();
+            });
+          }
+        })
+      } else {
+        alert(obj['msg']);
+      }
+    }
+  });
+
   $(document).ready(function(){
     //判断是否登录
     isLogin();
+  })
+
+  //添加
+  $('#add-btn').click(function(){
+    if ( $('#name').val() == '' ) {
+      alert('名称不能为空');
+    } else {
+      $('#add-form').ajaxSubmit(function() {
+        alert('添加成功！');
+        window.location.reload();
+      });
+    }
   })
 </script>
 </body>
