@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0" />
-  <title>登录</title>
+  <title>登录 - 易用联友</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/mBase.css">
   <link href="img/favicon.ico" rel="shortcut icon">
@@ -40,6 +40,8 @@
 
   //登录
   $('#login-btn').click(function(){
+
+    window.location.href = 'mCredit.html'
     var company = $('#company').val();
     var password = $('#password').val();
     if ( company == '') {
