@@ -14,3 +14,7 @@ function showMsgBox(msg) {
     $(".msg-box").remove();
   },1700)
 }
+
+$('.glyphicon-list').click(function(){
+  $('.m-menu').toggle();
+})
