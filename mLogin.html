@@ -34,13 +34,19 @@
 <script src="js/mBase.js"></script>
 <script>
   $(document).ready(function(){
+    //设置高度
     $('.login-bg').height( $(window).height() - 45 );
   })
 
   //登录
   $('#login-btn').click(function(){
-    var userName = $('#userName').val();
+    var company = $('#company').val();
     var password = $('#password').val();
+    if ( company == '') {
+      showMsgBox('请输入公司名称');
+    } else if ( password == '' ){
+      showMsgBox('请输入密码');
+    }
     $.ajax({
       url: baseUrl + 'adminLogin',
       xhrFields: {
@@ -49,7 +55,7 @@
       type: 'POST',
       dataType: 'json',
       data: {
-        username:userName,
+        company:company,
         password:password
       },
       success: function (data) {
@@ -57,7 +63,7 @@
         if ( obj['success'] ) {
           window.location.href = 'check.html'
         } else {
-          alert(obj['data']['errorMsg']);
+          showMsgBox('登录失败');
         }
       }
     });

@@ -38,16 +38,20 @@
       </div>
       <div class="input-group">
         <div class="input-group-addon"><span class="glyphicon glyphicon-tag"></span></div>
-        <select class="form-control">
-          <option>性别</option>
-          <option>男</option>
-          <option>女</option>
-          <option>保密</option>
+        <select class="form-control" id="sex">
+          <option value="" >性别</option>
+          <option value="1">男</option>
+          <option value="2">女</option>
+          <option value="0">保密</option>
         </select>
       </div>
       <div class="input-group">
         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
         <input type="password" id="password" name="password" placeholder="密码">
+      </div>
+      <div class="input-group">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
+        <input type="password" id="confirmPsd" name="password" placeholder="确认密码">
       </div>
     </div>
     <input type="button" id="register-btn2" class="m-btn" value="注册">
@@ -58,7 +62,59 @@
 <script src="js/mBase.js"></script>
 <script>
   $(document).ready(function(){
-    $('.login-bg').height( $(window).height() + 40 );
+    $('.login-bg').height( $(window).height() + 80 );
+  })
+
+  //注册
+  $('#register-btn2').click(function(){
+    var name = $('#name').val();
+    var company = $('#company').val();
+    var mobile = $('#phone').val();
+    var landLine = $('#landline').val();
+    var birthdate = $('#birthdate').val();
+    var sex = $('#sex').val();
+    var psd = $('#password').val();
+    var comfirmPsd = $('#confirmPsd').val();
+    if ( name == '') {
+      showMsgBox('请输入姓名');
+    } else if ( company == '' ){
+      showMsgBox('请输入公司名称');
+    } else if ( mobile == '' ){
+      showMsgBox('请输入手机号');
+    } else if ( landLine == '' ){
+      showMsgBox('请输入公司座机');
+    } else if ( psd == '' ){
+      showMsgBox('请输入密码');
+    } else if ( comfirmPsd == '' ){
+      showMsgBox('请确认密码');
+    } else if ( psd != comfirmPsd ){
+      showMsgBox('两次密码不同');
+    }
+    $.ajax({
+      url: baseUrl + 'adminLogin',
+      xhrFields: {
+        withCredentials:true
+      },
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        name:name,
+        company:company,
+        mobile:mobile,
+        landLine:landLine,
+        birthdate:birthdate,
+        sex:sex,
+        password:psd
+      },
+      success: function (data) {
+        var obj = eval(data);
+        if ( obj['success'] ) {
+          window.location.href = 'check.html'
+        } else {
+          showMsgBox('登录失败');
+        }
+      }
+    });
   })
 
 </script>
