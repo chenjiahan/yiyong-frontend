@@ -97,7 +97,7 @@
   $.ajax({
     url: baseUrl + 'getUser',
     xhrFields: {withCredentials: true},
-    type: 'GET',
+    type: 'POST',
     dataType: 'json',
     data: {
       page:1,
@@ -141,7 +141,7 @@
             xhrFields: {withCredentials: true},
             type: 'POST',
             dataType: 'json',
-            data: {id:deleteId},
+            data: {userID:deleteId},
             success: function (data) {
               var obj = eval(data);
               if ( obj['success']) {

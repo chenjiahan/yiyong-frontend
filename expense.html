@@ -112,6 +112,9 @@
 <script src="js/jquery.form.js"></script>
 <script src="js/base.js"></script>
 <script>
+  //判断是否登录
+  isLogin();
+
   var list = null;
   //获取
   $.ajax({
@@ -186,11 +189,6 @@
       }
     }
   });
-
-  $(document).ready(function(){
-    //判断是否登录
-    isLogin();
-  })
 
   //添加
   $('#add-btn').click(function(){

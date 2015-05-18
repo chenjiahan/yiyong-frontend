@@ -22,38 +22,25 @@
         <table class="table table-hover">
           <thead>
           <tr>
-            <th></th>
-            <th class="col-md-1">微信ID</th>
-            <th class="col-md-3">公司名称</th>
-            <th class="col-md-2">客户姓名</th>
+            <th class="col-md-1 align-center">微信ID</th>
+            <th class="col-md-2">公司名称</th>
+            <th class="col-md-1">客户姓名</th>
+            <th class="col-md-2">手机号</th>
             <th class="col-md-2">申请日期</th>
-            <th class="col-md-1">状态</th>
+            <th class="col-md-3">操作</th>
           </tr>
           </thead>
-          <tbody>
+          <tbody id="my-container">
           <tr>
-            <th scope="row" class="input-th"><input type="checkbox" /></th>
-            <td>1</td>
+            <th scope="row">1</th>
             <td>中国大唐集团公司</td>
             <td>李世民</td>
+            <td>13000000000</td>
             <td>2015-4-21</td>
-            <td>待审核</td>
-          </tr>
-          <tr>
-            <th scope="row" class="input-th"><input type="checkbox" /></th>
-            <td>2</td>
-            <td>神华集团有限责任公司</td>
-            <td>玉皇大帝</td>
-            <td>2015-4-22</td>
-            <td>待审核</td>
-          </tr>
-          <tr>
-            <th scope="row" class="input-th"><input type="checkbox" /></th>
-            <td>3</td>
-            <td>中兴通讯股份有限公司</td>
-            <td>红孩儿</td>
-            <td>2015-4-22</td>
-            <td>待审核</td>
+            <td>
+              <input type="button" class="btn btn-success" value="通过"/>
+              <input type="button" class="btn btn-danger" value="不通过"/>
+            </td>
           </tr>
           </tbody>
         </table>
@@ -61,10 +48,6 @@
     </div>
 
     <div class="row tb-toolbar">
-      <input type="button" class="btn btn-default" value="全选" id="selectAll" />
-      <input type="button" class="btn btn-default" value="全不选" id="unSelect" />
-      <input type="button" class="btn btn-success" value="通过" id="pass" data-toggle="modal" data-target="#pass-modal" />
-      <input type="button" class="btn btn-danger" value="不通过" id="unPass" data-toggle="modal" data-target="#unPass-modal" />
       <ul class="pagination">
         <li>
           <a href="#" aria-label="Previous">
@@ -91,7 +74,7 @@
         <div class="modal-body">
           <p>将选中客户设为通过审核吗？</p>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-primary" id="sure-pass">确定</button>
           <div class="clear"></div>
         </div>
       </div>
@@ -108,7 +91,7 @@
         <div class="modal-body">
           <p>将选中客户设为不通过审核吗？</p>
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-primary" id="sure-delete">确定</button>
           <div class="clear"></div>
         </div>
       </div>
@@ -121,10 +104,96 @@
 <script src="js/jquery.form.js"></script>
 <script src="js/base.js"></script>
 <script>
-  $(document).ready(function(){
-    //判断是否登录
-    isLogin();
-  })
+  //判断是否登录
+  isLogin();
+
+  var list = null;
+  //获取
+  $.ajax({
+    url: baseUrl + 'getVerifiedNot',
+    xhrFields: {withCredentials: true},
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      page:1,
+      size:10
+    },
+    success: function (data) {
+      var obj = eval(data);
+      if (obj['success']) {
+        list = obj['data'];
+        for( var i = 0; i < obj['data'].length; i++ ) {
+          var line = '<tr> <th scope="row">' +
+            obj['data'][i].id +
+            '</th> <td>' +
+            obj['data'][i].company +
+            '</td> <td>' +
+            obj['data'][i].name +
+            '</td> <td>' +
+            obj['data'][i].phone +
+            '</td> <td>' +
+            obj['data'][i].register_time +
+            '</td> <td><input type="button" class="btn btn-success" value="通过" data-toggle="modal" data-target="#pass-modal" data-n="'
+            + i
+            + '" data-id="'
+            + obj['data'][i].id
+            + '"/><input type="button" class="btn btn-danger" value="不通过" data-toggle="modal" data-target="#unPass-modal" data-n="'
+            + i
+            + '" data-id="'
+            + obj['data'][i].id
+            + '"/></td> </tr>';
+          $('#my-container').append(line);
+        }
+
+        //通过
+        var passId = null;
+        $('.btn-success').click(function(){
+          passId = this.dataset.id;
+        })
+        $('#sure-pass').click(function(){
+          $.ajax({
+            url: baseUrl + 'examine',
+            xhrFields: {withCredentials: true},
+            type: 'POST',
+            dataType: 'json',
+            data: {userID:passId,verifiedCode:1},
+            success: function (data) {
+              var obj = eval(data);
+              if ( obj['success']) {
+                alert('审核成功');
+                window.location.reload();
+              }
+            }
+          });
+        });
+
+        //不通过
+        var deleteId = null;
+        $('.btn-danger').click(function(){
+          deleteId = this.dataset.id;
+        })
+        $('#sure-delete').click(function(){
+          $.ajax({
+            url: baseUrl + 'examine',
+            xhrFields: {withCredentials: true},
+            type: 'POST',
+            dataType: 'json',
+            data: {userID:deleteId,verifiedCode:0},
+            success: function (data) {
+              var obj = eval(data);
+              if ( obj['success']) {
+                alert('审核成功');
+                window.location.reload();
+              }
+            }
+          });
+        });
+      } else {
+        alert(obj['msg']);
+      }
+    }
+  });
+
 </script>
 </body>
 </html>

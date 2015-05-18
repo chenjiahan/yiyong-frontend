@@ -38,6 +38,17 @@
     $('.login-bg').height( $(window).height() - 45 );
   })
 
+  /*
+   *  获取Url中的参数
+   */
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+  }
+
+  alert("openid = " + getQueryString('openid'));
+
   //登录
   $('#login-btn').click(function(){
 
